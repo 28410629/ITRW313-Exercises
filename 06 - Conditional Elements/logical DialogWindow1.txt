@@ -1,0 +1,45 @@
+CLIPS> (reset)
+<== instance [initial-object] of INITIAL-OBJECT
+<== f-0     (initial-fact)
+==> instance [initial-object] of INITIAL-OBJECT
+==> f-0     (initial-fact)
+CLIPS> Loading Selection...
+Defining deftemplate: person
+Defining deffacts: trythese
+Defining defrule: try-dependances +j+j+j+j
+CLIPS> (reset)
+<== instance [initial-object] of INITIAL-OBJECT
+<== f-0     (initial-fact)
+==> instance [initial-object] of INITIAL-OBJECT
+==> f-0     (initial-fact)
+==> f-1     (person (name anyone))
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (person (name anyone))
+For a total of 2 facts.
+CLIPS> (assert (person (name me)))
+==> f-2     (person (name me))
+<Fact-2>
+CLIPS> (run)
+CLIPS> (assert (person (name myself)))
+==> f-3     (person (name myself))
+<Fact-3>
+CLIPS> (assert (person (name I)))
+==> f-4     (person (name I))
+==> Activation 0      try-dependances: f-3,f-2,f-4
+<Fact-4>
+CLIPS> (run)
+FIRE    1 try-dependances: f-3,f-2,f-4
+==> f-5     (you-are-the-same)
+There are depenancies
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (person (name anyone))
+f-2     (person (name me))
+f-3     (person (name myself))
+f-4     (person (name I))
+f-5     (you-are-the-same)
+For a total of 6 facts.
+CLIPS> (dependents 3)
+f-5
+CLIPS> 

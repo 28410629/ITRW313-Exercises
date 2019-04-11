@@ -1,0 +1,48 @@
+CLIPS> Loading Selection...
+Defining deftemplate: is-animal
+Defining deftemplate: is-mammal
+Defining deffacts: all-animals
+Defining defrule: is-redfox-mm +j+j
+Defining defrule: is-lion-mm +j+j
+Defining defrule: is-dolphin-mm +j+j
+Defining defrule: is-kudu-mm +j+j
+Defining defrule: all-categorised +j+j+j+j+j+j+j
+==> Activation 0      all-categorised: *
+CLIPS> (reset)
+<== Activation 0      all-categorised: *
+<== instance [initial-object] of INITIAL-OBJECT
+<== f-0     (initial-fact)
+==> Activation 0      all-categorised: *
+==> instance [initial-object] of INITIAL-OBJECT
+==> f-0     (initial-fact)
+==> f-1     (is-animal (name red-fox) (sub-group canine))
+==> Activation 0      is-redfox-mm: f-1
+==> f-2     (is-animal (name lion) (sub-group nil))
+==> f-3     (is-animal (name dolphin) (sub-group cetacean))
+==> Activation 0      is-dolphin-mm: f-3
+==> f-4     (is-animal (name kudu) (sub-group antelope))
+==> Activation 0      is-kudu-mm: f-4
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (is-animal (name red-fox) (sub-group canine))
+f-2     (is-animal (name lion) (sub-group nil))
+f-3     (is-animal (name dolphin) (sub-group cetacean))
+f-4     (is-animal (name kudu) (sub-group antelope))
+For a total of 5 facts.
+CLIPS> (modify 2 (name lion) (sub-group carnivore))
+<== f-2     (is-animal (name lion) (sub-group nil))
+==> f-5     (is-animal (name lion) (sub-group carnivore))
+==> Activation 0      is-lion-mm: f-5
+<Fact-5>
+CLIPS> (run)
+FIRE    1 is-lion-mm: f-5
+==> f-6     (is-mammal (animal lion) (group mammal))
+FIRE    2 is-kudu-mm: f-4
+==> f-7     (is-mammal (animal kudu) (group mammal))
+FIRE    3 is-dolphin-mm: f-3
+==> f-8     (is-mammal (animal dolphin) (group mammal))
+FIRE    4 is-redfox-mm: f-1
+==> f-9     (is-mammal (animal red-fox) (group mammal))
+FIRE    5 all-categorised: *
+All animals categorised.
+CLIPS> 

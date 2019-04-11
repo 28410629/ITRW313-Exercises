@@ -1,0 +1,58 @@
+CLIPS> Loading Selection...
+Defining deftemplate: person
+Defining defrule: try-dependances +j+j
+CLIPS> (reset)
+<== instance [initial-object] of INITIAL-OBJECT
+<== f-0     (initial-fact)
+==> instance [initial-object] of INITIAL-OBJECT
+==> f-0     (initial-fact)
+CLIPS> (assert (name Annette))
+==> f-1     (name Annette)
+<Fact-1>
+CLIPS> (run)
+CLIPS> (assert (person (name Annette)))
+==> f-2     (person (name Annette))
+==> Activation 0      try-dependances: *
+<Fact-2>
+CLIPS> (assert (person (name Sannie)))
+==> f-3     (person (name Sannie))
+<Fact-3>
+CLIPS> (run)
+FIRE    1 try-dependances: *
+==> f-4     (there-is-a-person-in-the-list)
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (name Annette)
+f-2     (person (name Annette))
+f-3     (person (name Sannie))
+f-4     (there-is-a-person-in-the-list)
+For a total of 5 facts.
+CLIPS> (dependents 3)
+None
+CLIPS> (dependents 2)
+None
+CLIPS> (retract 2)
+<== f-2     (person (name Annette))
+CLIPS> (restract 3)
+
+[EXPRNPSR3] Missing function declaration for restract.
+CLIPS> (retract 3)
+<== f-3     (person (name Sannie))
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (name Annette)
+f-4     (there-is-a-person-in-the-list)
+For a total of 3 facts.
+CLIPS> (assert (person (name none)))
+==> f-5     (person (name none))
+==> Activation 0      try-dependances: *
+<Fact-5>
+CLIPS> (run)
+FIRE    1 try-dependances: *
+CLIPS> (facts)
+f-0     (initial-fact)
+f-1     (name Annette)
+f-4     (there-is-a-person-in-the-list)
+f-5     (person (name none))
+For a total of 4 facts.
+CLIPS> 
